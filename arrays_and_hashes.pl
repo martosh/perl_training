@@ -1,50 +1,82 @@
-# defining Hash can be done with %<some_name> for example:
+# Remember use statemet includes a libraly in the script
 use 5.10.1;
-use Data::Dumper;
 
-@a = (1 .. 10);
-@b = (a .. z);
-@c = (@a, @b);
+# Data::Dumper is useful for debuging arrays and hashes
+use Data::Dumper;
+use warnings;
+
+###############################
+# More for arrays
+###############################
+@a = ( 1 .. 10 );
+@b = ( 'a' .. 'z' );
+
+# merging two or more arrays in another
+# way number one
+@c = ( @a, @b );
+
+# the line bellow works as well for merging
 #push @c, @a, @b;
+# show me result of merged array;
 say Dumper \@c;
 
-#$name1 = 'tosho';
-#$name2 = 'gosho';
-#
-#%name_Surname;
-#$name_Surname{'Ivan'} = 'Ivanov';
-#$name_Surname{'Gosho'} = 'Ivanov';
-#$name_Surname{'Ivan'} = 'Stoyanov';
-#$some_name = 'Yordan';
-#$some_surname = 'Velichkov';
-#$some_name = reverse $some_name;
-#
-#$name_Surname{ $some_name   } = $some_surname . '123123';
-#
-#
-#@names = ('1', '2');
-#$other_name = '3';
-##say "Before[@names]";
-#
-#push @names, $other_name;
-#say  $names[1];
-## for taking element from array use shift and pop 
-#$some_other_name = pop @names;
-##say "After ALL[@names]";
-#
-#(#$digit1, $digit2) = '123', '123123';
+@names = ( 'Ivan', 'Dragan' );
+$other_name = 'Stoyan';
+say "Before[@names]";
+
+# to add element in array use push
+push @names, $other_name;
+say "Show me the array element [$names[1]]";
+
+#for taking element from array use shift or pop
+$some_other_name = pop @names;
+say "Show me array After ALL interventions [@names]";
+
+# define more variables at once using () 
+( $digit1, $digit2 ) = ('123', '123123');
+say "digit1[$digit1] digit2[$digit2]";
+
+##################################
+# Hashes
+##################################
+
+#defining Hash can be done with % sign for example:
+%name_Surname;
+##Key -> Value
+# remember that adding keys and values in hash works with dollar sign $ not %
+# hash keys (Ivan, Gosho... ) must be uniq
+$name_Surname{ 'Ivan' }  = 'Ivanov';
+$name_Surname{ 'Gosho' } = 'Ivanov';
+$name_Surname{ 'Ivan' }  = 'Stoyanov';
+
+# using variables to be assigned as hash key and value pair
+$some_name                  = 'Yordan';
+$some_surname               = 'Velichkov';
+$name_Surname{ $some_name } = $some_surname . '123123';
+
+# Reverse function works on strings and hashes
+$some_name    = reverse $some_name;
+%reverce_hash = reverse %name_Surname;
+
+say Dumper \%reverce_hash;
+
+#################################
+# If statement with  > conditions
+#################################
+
+if ( 3 > 2 ) {
+    say "3 is greater that 2";
+}
+
+# If statements with simple conditions of regex
 say "Please give me your age";
 $age = <STDIN>;
-if ($age =~ /^\d+$/  ) {
-     #execute statements;
-     print "Yeah I am super math specialist";
+chomp $age;
 
+if ( $age =~ /^\d+$/ ) {
+    #execute statements;
+    say "Your age[$age] is correct!";
+} else {
+    say "Wrong age please try again!";
 }
-#
-#
-#
-##Key -> Value
-#
-##take a look that print function wont print the hash like arrays;
-##say Dumper \%name_Surname;
-#
+
