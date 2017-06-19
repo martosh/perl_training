@@ -84,6 +84,7 @@ my $name = 'Iwan    Ivanov ';
 my @names;
 # use regex in if to aboid bugs with caching variables $1;
 
+# using regex without if 
 'asdasd' =~ /(asd)/;
 say "show me [$1]";
 
